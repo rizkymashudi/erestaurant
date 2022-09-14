@@ -9,7 +9,7 @@ class MenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      constraints: const BoxConstraints(maxWidth: double.infinity),
       height: 50,
       decoration: const BoxDecoration(
           color: secondaryColor,
@@ -18,10 +18,15 @@ class MenuWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            menu.name,
-            style: const TextStyle(
-                fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Text(
+              menu.name,
+              style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
           ),
         ],
       ),

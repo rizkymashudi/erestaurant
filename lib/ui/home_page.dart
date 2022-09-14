@@ -1,3 +1,4 @@
+import 'package:erestaurant/common/style.dart';
 import 'package:erestaurant/data/models/restaurant.dart';
 import 'package:erestaurant/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
@@ -10,17 +11,52 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Restaurant'),
-        ),
         body: SafeArea(
-            bottom: false,
             child: SizedBox(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: _buildListRestaurant(context),
-              ),
-            )));
+      height: MediaQuery.of(context).size.height,
+      child: ListView(physics: const NeverScrollableScrollPhysics(), children: [
+        _headTitle(),
+        SizedBox(
+          height: MediaQuery.of(context).size.height - 210,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: _buildListRestaurant(context),
+          ),
+        ),
+      ]),
+    )));
+  }
+
+  Column _headTitle() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 24),
+          child: Text(
+            "eRestaurant",
+            style: themeStyle.headlineMedium,
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        const Padding(
+          padding: EdgeInsets.only(left: 24),
+          child: Text(
+            "Recommendation restaurant for you!",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+      ],
+    );
   }
 
   FutureBuilder<String> _buildListRestaurant(BuildContext context) {
@@ -28,6 +64,9 @@ class HomePage extends StatelessWidget {
       future:
           DefaultAssetBundle.of(context).loadString('assets/local_data.json'),
       builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const CircularProgressIndicator();
+        }
         final List restaurants = parseArticles(snapshot.data);
         int index = 0;
         return ListView(

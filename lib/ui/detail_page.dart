@@ -39,8 +39,23 @@ class DetailPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 40,
+                                height: 6,
+                                decoration: BoxDecoration(
+                                    color: Colors.amber.shade900,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10))),
+                              )
+                            ],
+                          ),
                           _header(),
                           const SizedBox(
                             height: 25,

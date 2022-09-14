@@ -14,14 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
           appBarTheme: const AppBarTheme(elevation: 0),
           colorScheme: Theme.of(context).colorScheme.copyWith(
               primary: primaryColor,
               secondary: secondaryColor,
               onPrimary: Colors.black),
-          primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           textTheme: themeStyle,
           elevatedButtonTheme: ElevatedButtonThemeData(
